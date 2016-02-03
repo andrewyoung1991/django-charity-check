@@ -1,0 +1,7 @@
+-r common.txt
+kombu==3.0.33
+six==1.10.0
+amqp==1.4.9
+anyjson==0.3.3
+billiard==3.3.0.22
+celery==3.1.20

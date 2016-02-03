@@ -31,6 +31,7 @@ def test_check_charities(mock_dbm, charity):
     checker.refresh_from_db()
     assert checker.verified
     assert checker.sanitized
+    assert not checker.fully_verified
 
 
 @mock.patch("charity_check.util.dbm")
