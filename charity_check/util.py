@@ -8,6 +8,8 @@ try:
 except ImportError:
     from urllib.request import urlopen
 
+from io import BytesIO
+
 import csv
 import zipfile
 import os
@@ -49,7 +51,8 @@ class IRSNonprofitData:
 
     def _download_irs_nonprofit_data(self):
         with urlopen(IRS_NONPROFIT_DATA_URL) as irs_url_data:
-            with zipfile.ZipFile(irs_url_data.read()) as zipped:
+            data = BytesIO(irs_url_data.read())
+            with zipfile.ZipFile(data) as zipped:
                 zipped.extract(member=TXT_FILE_NAME, path=CHARITY_CHECK["dbm_location"])
 
     def __enter__(self):
@@ -71,7 +74,7 @@ def make_dbm():
         with dbm.open(_publication78_dbm, "n") as db:
             for row in irs_data:
                 if not len(row):  # pragma: no cover
-                    pass
+                    continue
                 ein, data = row[0], row[1:]
                 data = "|".join(data)
                 db[ein] = data

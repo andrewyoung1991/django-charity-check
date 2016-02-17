@@ -55,7 +55,7 @@ class CharityCheck(models.Model):
 
     def __str__(self):
         args = (self.ein, self.name, self.verified)
-        return "<CharityCheck(ein={0}, name={1}, verified={3})>".format(*args)
+        return "<CharityCheck(ein={0}, name={1}, verified={2})>".format(*args)
     __repr__ = __str__
     __unicode__ = __str__
 
