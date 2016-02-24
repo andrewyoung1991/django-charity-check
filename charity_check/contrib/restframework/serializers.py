@@ -15,7 +15,7 @@ class CharityCheckSerializer(serializers.ModelSerializer):
             "sanitized", "datetime_checked", "verification_status",
             "verification_failure_messages")
 
-    def get_verification_failure_message(self, instance):
+    def get_verification_failure_messages(self, instance):
         return instance.exceptions.values_list("message", flat=True)
 
     def get_verification_status(self, instance):
