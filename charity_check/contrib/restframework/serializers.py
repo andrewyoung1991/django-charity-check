@@ -6,9 +6,8 @@ from charity_check import models
 class CharityCheckSerializer(serializers.ModelSerializer):
     """
     """
-    verification_failure_messages = \
-        serializers.SerializerMethodField("get_failure_messages")
-    verification_status = serializers.SerializerMethodField("get_verification_status")
+    verification_failure_messages = serializers.SerializerMethodField()
+    verification_status = serializers.SerializerMethodField()
 
     class Meta:
         model = models.CharityCheck
@@ -16,7 +15,7 @@ class CharityCheckSerializer(serializers.ModelSerializer):
             "sanitized", "datetime_checked", "verification_status",
             "verification_failure_messages")
 
-    def get_failure_message(self, instance):
+    def get_verification_failure_message(self, instance):
         return instance.exceptions.values_list("message", flat=True)
 
     def get_verification_status(self, instance):
