@@ -102,11 +102,11 @@ def verify_nonprofit(ein, **kwargs):
 
     dc = kwargs.pop("dc", None)
     for key, value in kwargs.items():
-        if value is not None:
+        if value:
             match = getattr(data, key, None)
             if not value.lower() == match.lower():
                 raise ValidationError({key: "did not match IRS records"})
-    if dc is not None:
+    if dc:
         dcs = dc.lower().split(",")
         local_dcs = data.dc.lower().split(",")
         for code in dcs:
