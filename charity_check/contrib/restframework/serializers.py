@@ -7,8 +7,8 @@ class CharityCheckSerializer(serializers.ModelSerializer):
     """
     """
     verification_failure_messages = \
-        serializers.SerialilzerMethodField("get_failure_messages")
-    verification_status = serializers.SerialilzerMethodField("get_verification_status")
+        serializers.SerializerMethodField("get_failure_messages")
+    verification_status = serializers.SerializerMethodField("get_verification_status")
 
     class Meta:
         model = models.CharityCheck
